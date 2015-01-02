@@ -11,7 +11,10 @@ Additional details are available [here] (https://beacon.nist.gov/home)
 This Java library focuses on the validation of the cryptographic promises and dosen't provide a robust way of retriving the actual beacon record documents. The main class is `org.nist.randomness.beacon.Validator`. An example of how this logic can be driven is located in `org.nist.randomness.beacon.ValidatorTest`. Code similar to the following may be used to pool down and validate records 
 
 ```java
+URL NIST_CERT_URL = new URL("https://beacon.nist.gov/certificate/beacon.cer");
+URL NIST_RECORD_URL = new URL("https://beacon.nist.gov/rest/record/last");
+
 Validator vlad = new Validator();
-vlad.setCertificate(Loader.loadCert(new URL("https://beacon.nist.gov/certificate/beacon.cer")));
-vlad.isSignatureValid(new UnpackedRecord(Loader.loadRecord(new URL("https://beacon.nist.gov/rest/record/last"))));
+vlad.setCertificate(Loader.loadCert(NIST_CERT_URL));
+vlad.isSignatureValid(new UnpackedRecord(Loader.loadRecord(NIST_RECORD_URL)));
 ```
